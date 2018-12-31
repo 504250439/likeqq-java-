@@ -14,7 +14,7 @@ import static util.Config.friend_json_data;
  */
 public class Config {
 
-    public static final String IP="10.16.59.188";
+    public static final String IP="192.168.1.103";
     public static final  int LOGIN_POST=4001;
 
     public static String username;
@@ -26,13 +26,10 @@ public class Config {
 
     public static String resolve_friend_list_data="";
 
+
+    //解析获取用户uid
     public static void resolve_friend_json_data(String friend_json_data)
     {
-
-        System.out.print("AWdawdwa");
-        System.out.print(friend_json_data);
-
-
         Config.friend_json_data=friend_json_data;
         JSONArray json=JSONArray.fromObject(friend_json_data);
 

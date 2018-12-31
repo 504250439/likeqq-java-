@@ -71,8 +71,7 @@ public class UserService {
         try
         {
             conn=DBManager.getConnection();
-            PreparedStatement pst=conn.prepareStatement("SELECT u.uid,u.name,u.img from friend f  join users u on " +
-                    "u.uid=f.friendid and f.uid=? "
+            PreparedStatement pst=conn.prepareStatement("sELECT u.uid,u.img,u.name from friend f  join users u on u.uid=f.friendid and f.uid=? "
                    );
             pst.setString(1,uid);
             ResultSet rs=pst.executeQuery();
@@ -81,8 +80,10 @@ public class UserService {
             {
                 UserInfo userInfo=new UserInfo();
                 userInfo.setUid(rs.getString(1));
-                userInfo.setname(rs.getString(2));
-                userInfo.setImg(rs.getString(3));
+                userInfo.setImg(rs.getString(2));
+                userInfo.setname(rs.getString(3));
+                //System.out.print(rs.getString(3));
+
                 vector.add(userInfo);
             }
 

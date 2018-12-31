@@ -71,19 +71,14 @@ public class loginServer implements Runnable{
                     bytes = new byte[1024];
                     len = in.read(bytes);
                     String command = new String(bytes, 0, len);
-
+                    //循环等待信息
                     if (command.equals("U0001")) {
                         // 更新好友列表
                         Vector<UserInfo> userinfos=new UserService().getFriendList(uid);
                         out.write(JSONArray.fromObject(userinfos).toString().getBytes());
                         out.flush();
-                    } else if (command.equals("U0002")) {
-                        // 更新个人资料
-
-                    } else if (command.equals("E0001")) {
-                        // 修改个人资料
-
-                    } else if (command.equals("EXIT")) {
+                    }
+                    else if (command.equals("EXIT")) {
                         // 退出用户登录
                         return;
                     }

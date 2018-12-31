@@ -20,8 +20,9 @@ public class UserInfo {
         return name;
     }
 
-    public void setname(String netname) {
+    public void setname(String name) {
         this.name= name;
+
     }
 
     public String getImg() {
