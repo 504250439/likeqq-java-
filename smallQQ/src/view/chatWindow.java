@@ -1,6 +1,12 @@
-package chatWindow;
-
+package view;
 import javax.swing.*;
+
+
+/**
+ *  聊天对话界面
+ *
+ *
+ */
 
 public class chatWindow extends JFrame{
     public chatWindow()

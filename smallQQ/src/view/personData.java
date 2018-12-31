@@ -1,6 +1,13 @@
-package mainWindow;
+package view;
 
 import javax.swing.*;
+
+/**
+ * 个人信息
+ *
+ *
+ */
+
 
 public class personData extends JFrame{
     public personData()

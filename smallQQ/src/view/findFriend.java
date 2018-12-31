@@ -1,6 +1,12 @@
-package mainWindow;
+package view;
 
 import javax.swing.*;
+
+/**
+ * 查找好友界面
+ *
+ *
+ */
 
 public class findFriend extends JFrame{
     public findFriend()

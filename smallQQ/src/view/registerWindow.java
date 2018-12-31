@@ -1,6 +1,12 @@
-package loginWindow;
+package view;
 
 import javax.swing.*;
+
+/**
+ * 注册界面
+ *
+ *
+ */
 
 public class registerWindow extends JFrame{
     public registerWindow()
@@ -22,9 +28,9 @@ public class registerWindow extends JFrame{
         nameL.setBounds(80,10,100,30);
         add(nameL);
 
-        JLabel emailL = new JLabel("Email:");
-        emailL.setBounds(80,60,100,30);
-        add(emailL);
+        JLabel id1 = new JLabel("账号:");
+        id1.setBounds(80,60,100,30);
+        add(id1);
 
         JLabel passwordL = new JLabel("密码:");
         passwordL.setBounds(80,120,100,30);

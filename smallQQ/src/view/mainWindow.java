@@ -1,10 +1,15 @@
-package mainWindow;
-
-import loginWindow.registerWindow;
+package view;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
+/**
+ * qq主界面
+ *
+ *
+ */
 
 public class mainWindow extends JFrame implements ActionListener {
     JButton head;
