@@ -51,7 +51,6 @@ public class FriendList extends JPanel{
 
         Collection<FriendDataJpsnel> faceJPanels = list.values();
         List<FriendDataJpsnel> list = new ArrayList(faceJPanels);
-//        Collections.sort(list);
 
         int i = 0;
         for (FriendDataJpsnel friendDataJpsnel : list) {

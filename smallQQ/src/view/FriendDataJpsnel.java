@@ -59,7 +59,7 @@ public class FriendDataJpsnel extends JPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
 
         if (e.getClickCount() == 2) {
-            chatWindow chat=new chatWindow(uid, name, image);
+            Config.showChatWindow(uid, name,image);
         }
 
     }

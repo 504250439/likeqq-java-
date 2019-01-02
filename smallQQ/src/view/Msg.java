@@ -1,5 +1,13 @@
 package view;
 
+/**
+ *
+ * 对信息进行封装
+ * 防止写入错误
+ *
+ */
+
+
 public class Msg {
 
     private String MyUID;

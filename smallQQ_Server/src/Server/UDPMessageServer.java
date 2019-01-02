@@ -8,6 +8,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import net.sf.json.JSONObject;
 
+import static javax.swing.UIManager.getString;
+
 public class UDPMessageServer implements Runnable {
 
     private DatagramPacket packet = null;
@@ -36,7 +38,6 @@ public class UDPMessageServer implements Runnable {
                 String MyUID = json.getString("myUID");
                 String toUID = json.getString("toUID");
                 String msgg=json.getString("msg");
-                System.out.print(msgg);
 
                  //更新最新的IP和端口号
                 UserOnlineList.getUserOnlineList().updateOnlineUDP(MyUID, packet.getAddress().getHostAddress(),
@@ -51,7 +52,6 @@ public class UDPMessageServer implements Runnable {
 
                 // 发出数据包
                 datagramSocket.send(datagramPacket);
-
             }
 
         } catch (Exception e) {

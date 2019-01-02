@@ -9,10 +9,11 @@ import util.Config;
 
 import net.sf.json.JSONObject;
 
+import view.chatWindow;
+
 /**
  * 接收服务器的中转消息
  *
- * @author 凯哥
  *
  */
 public class MessageService extends Thread {
@@ -25,6 +26,12 @@ public class MessageService extends Thread {
                 client.receive(datagramPacket);
 
                 System.out.println(new String(datagramPacket.getData(), 0, datagramPacket.getData().length));
+                MessagePool
+                        .getMessagePool()
+                        .addMessage(
+                                new String(datagramPacket.getData(),
+                                        0, datagramPacket.getData().length));
+
 
             } catch (Exception e) {
             }

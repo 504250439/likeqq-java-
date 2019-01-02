@@ -6,7 +6,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 import util.Config;
-
 import net.sf.json.JSONObject;
 
 public class MessageRegService extends Thread {

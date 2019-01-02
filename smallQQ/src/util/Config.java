@@ -5,8 +5,10 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import view.FriendList;
+import view.chatWindow;
 
 import java.net.DatagramSocket;
+import java.util.Hashtable;
 
 import static util.Config.friend_json_data;
 
@@ -47,10 +49,25 @@ public class Config {
             stringBuffer.append(jsonObject.getString("uid"));
             stringBuffer.append(",");
 
-
-
         }
         resolve_friend_list_data=stringBuffer.toString();
+    }
+
+
+    // 聊天窗口登记
+    public  static Hashtable<String, chatWindow> chatwindow = new Hashtable<String, chatWindow>();
+
+    // 显示聊天窗口
+    public static void showChatWindow(String uid, String name, String img) {
+
+        if (chatwindow.get(uid) == null) {
+            chatWindow chat = new chatWindow(uid, name, img);
+            chatwindow.put(uid, chat);
+        } else {
+            chatwindow.get(uid).setAlwaysOnTop(true);
+            chatwindow.get(uid).setVisible(true);
+        }
+
     }
 
 
