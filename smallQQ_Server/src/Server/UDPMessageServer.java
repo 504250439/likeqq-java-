@@ -27,27 +27,30 @@ public class UDPMessageServer implements Runnable {
                 String MyUID = json.getString("myUID");
 
                 // 更新最新的IP和端口号
-//                UserOnlineList.getUserOnlineList().updateOnlineUDP(MyUID, packet.getAddress().getHostAddress(),
-//                        packet.getPort());
+                UserOnlineList.getUserOnlineList().updateOnlineUDP(MyUID, packet.getAddress().getHostAddress(),
+                        packet.getPort());
                 System.out.println("有注册信息发来:"+ jsonStr);
 
                 // 处理信息转发 // 处理消息确认
             } else if (json.getString("type").equals("msg") || json.getString("type").equals("qr")) {
                 String MyUID = json.getString("myUID");
                 String toUID = json.getString("toUID");
-                // 更新最新的IP和端口号
-//                UserOnlineList.getUserOnlineList().updateOnlineUDP(MyUID, packet.getAddress().getHostAddress(),
-//                        packet.getPort());
-//
-//                // 获得要接收你信息的人
-//                UserInfo toUserinfo = UserOnlineList.getUserOnlineList().getOnlineUserInfo(toUID);
+                String msgg=json.getString("msg");
+                System.out.print(msgg);
+
+                 //更新最新的IP和端口号
+                UserOnlineList.getUserOnlineList().updateOnlineUDP(MyUID, packet.getAddress().getHostAddress(),
+                        packet.getPort());
+
+                // 获得要接收你信息的人
+                UserInfo toUserinfo = UserOnlineList.getUserOnlineList().getOnlineUserInfo(toUID);
 
 //                // 准备转发到客户端的数据包
-//                DatagramPacket datagramPacket = new DatagramPacket(packet.getData(), packet.getLength(),
-//                        InetAddress.getByName(toUserinfo.getUdpip()), toUserinfo.getUdpport());
+                DatagramPacket datagramPacket = new DatagramPacket(packet.getData(), packet.getLength(),
+                        InetAddress.getByName(toUserinfo.getUdpip()), toUserinfo.getUdpport());
 
-//                // 发出数据包
-//                datagramSocket.send(datagramPacket);
+                // 发出数据包
+                datagramSocket.send(datagramPacket);
 
             }
 

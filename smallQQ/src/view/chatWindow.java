@@ -1,5 +1,14 @@
 package view;
+import net.sf.json.JSONObject;
+import util.Config;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
 
 
 /**
@@ -8,7 +17,7 @@ import javax.swing.*;
  *
  */
 
-public class chatWindow extends JFrame{
+public class chatWindow extends JFrame implements WindowListener {
     private String uidStr;
     private String nameStr;
     private String imgStr;
@@ -56,6 +65,62 @@ public class chatWindow extends JFrame{
         set.setBounds(480,530,100,30);
         add(set);
 
+        set.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+
+                // {“type”:”msg”,”toUID”:””,”MyUID”:””,”msg”:””,”code”:””}
+
+                try {
+                    Msg msg = new Msg();
+                    msg.setCode(System.currentTimeMillis() + "");
+                    msg.setMyUID(JSONObject.fromObject(Config.my_json_data).getString("uid"));
+                    msg.setToUID(uidStr);
+                    msg.setMsg(inputBox.getText());
+                    msg.setType("msg");
+
+                    String json = JSONObject.fromObject(msg).toString();
+                    byte[] bytes = json.getBytes();
+
+                    DatagramPacket datagramPacket = new DatagramPacket(bytes, bytes.length,
+                            InetAddress.getByName(Config.IP), 4003);
+                    Config.datagramSocket_client.send(datagramPacket);
+                    inputBox.setText("");
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+
+            }
+        });
+
+
+
+
+
     }
+    @Override
+    public void windowClosing(WindowEvent e) {
+        this.dispose();
+    }
+    @Override
+    public void windowOpened(WindowEvent e) { }
+    @Override
+    public void windowClosed(WindowEvent e) { }
+    @Override
+    public void windowIconified(WindowEvent e) { }
+    @Override
+    public void windowDeiconified(WindowEvent e) { }
+    @Override
+    public void windowActivated(WindowEvent e) { }
+    @Override
+    public void windowDeactivated(WindowEvent e) { }
+
+
+
+
+
+
+
+
 
 }
