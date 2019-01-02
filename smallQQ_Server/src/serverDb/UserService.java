@@ -1,5 +1,6 @@
 package serverDb;
 import com.mysql.cj.exceptions.PasswordExpiredException;
+import com.mysql.cj.xdevapi.SqlDataResult;
 import net.sf.json.JSONArray;
 
 import java.beans.PersistenceDelegate;
@@ -125,11 +126,7 @@ public class UserService {
 
     }
 
-
-
-
-
-
+}
 
 
 //    public static void main(String[] args) {
@@ -155,4 +152,4 @@ public class UserService {
 //
 //
 //    }
-}
+

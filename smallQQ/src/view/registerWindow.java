@@ -1,14 +1,30 @@
 package view;
 
-import javax.swing.*;
+import net.sf.json.JSONObject;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import server.registerServer;
 /**
  * 注册界面
  *
  *
  */
 
-public class registerWindow extends JFrame{
+public class registerWindow extends JFrame implements ActionListener {
+
+    String uid;
+    String name;
+    String password;
+    JTextField nameT;
+    JTextField numberT;
+    JPasswordField passwordT;
+
+
+
     public registerWindow()
     {
         init();
@@ -36,23 +52,49 @@ public class registerWindow extends JFrame{
         passwordL.setBounds(80,120,100,30);
         add(passwordL);
 
-        JTextField name=new JTextField(15);
-        name.setBounds(130,10,150,30);
-        add(name);
+        nameT=new JTextField(15);
+        nameT.setBounds(130,10,150,30);
+        add(nameT);
 
 
-        JTextField number=new JTextField(15);
-        number.setBounds(130,60,150,30);
-        add(number);
+        numberT=new JTextField(15);
+        numberT.setBounds(130,60,150,30);
+        add(numberT);
 
-        JPasswordField password=new JPasswordField(15);
-        password.setBounds(130,120,150,30);
-        add(password);
+        passwordT=new JPasswordField(15);
+        passwordT.setBounds(130,120,150,30);
+        add(passwordT);
 
         JButton register=new JButton("注册");
         register.setBounds(100,180,100,40);
         add(register);
+        register.addActionListener(this);
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        uid=numberT.getText();
+        name=nameT.getText();
+        password=passwordT.getText();
+        try {
+            registerServer re = new registerServer(uid, name, password);
+
+            if(re.status==98)
+            {
+                System.out.print("success");
+
+            }
+
+
+
+
+
+
+
+        }
+        catch (IOException a){}
 
     }
 

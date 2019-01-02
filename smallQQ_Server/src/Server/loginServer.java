@@ -56,7 +56,6 @@ public class loginServer implements Runnable{
             String password = json.getString("password");
 
 
-
             try
             {
                 String uid = null;

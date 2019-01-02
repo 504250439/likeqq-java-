@@ -30,6 +30,18 @@ public class start {
             };
         }.start();
 
+        new Thread() {
+
+            public void run() {
+                try {
+                    System.out.println("注册服务器!");
+                    RegisterServer.openServer();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            };
+        }.start();
 
     }
 

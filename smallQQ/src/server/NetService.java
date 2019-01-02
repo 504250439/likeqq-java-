@@ -29,9 +29,7 @@ public class NetService implements Runnable{
 
     //建立单例类
     private NetService(){}
-
     private static NetService netService = new NetService();
-
     public static NetService getNetService()
     {
         return netService;
@@ -103,6 +101,7 @@ public class NetService implements Runnable{
         // 开始与服务传递消息
         output.write(json_str.getBytes());
         output.flush();
+
 
         // 等待服务器回执消息
         byte[] bytes = new byte[1024];

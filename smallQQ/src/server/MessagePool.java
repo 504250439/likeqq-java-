@@ -27,7 +27,6 @@ public class MessagePool {
         return messagePool;
     }
 
-    public static HashMap<String, LinkedList<Msg>> hashMap = new HashMap();
 
     // 不管是给谁消息 都应该在池里存储起来
     public void addMessage(String json) {

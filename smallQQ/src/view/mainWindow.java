@@ -36,7 +36,7 @@ public class mainWindow extends JFrame implements ActionListener {
         add(head);
         head.addActionListener(this);
 
-        JLabel name = new JLabel(JSONObject.fromObject(Config.my_json_data).getString("uid"));
+        JLabel name = new JLabel(JSONObject.fromObject(Config.my_json_data).getString("name"));
         name.setBounds(80,15,100,30);
         add(name);
 
