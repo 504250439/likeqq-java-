@@ -2,6 +2,12 @@ package view;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Hashtable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Set;
 
 import javax.swing.*;
 
@@ -23,42 +29,43 @@ public class FriendList extends JPanel{
     public FriendList()
     {
         setLayout(null);
-
-         for(int i=0;i<20;i++)
-         {
-             JPanel panel = new JPanel();
-             panel.setLayout(null);
-             panel.setBounds(0, i * 50, 550, 60);
-
-             JLabel label = new JLabel(new ImageIcon("src/pictures/dog.jpg"));
-             label.setBounds(4, 4, 48, 48);
-             panel.add(label);
-
-             JLabel label_1 = new JLabel();
-             label_1.setBounds(58, 4, 478, 18);
-             panel.add(label_1);
-             label_1.setText("New JLabel");
-
-             add(panel);
-         }
-
-
-        //设置大小 自动调整
-        this.setPreferredSize(new Dimension(0, 40 * 50));
+        upData();
 
     }
 
+    private Hashtable<String, FriendDataJpsnel> list = new Hashtable();
+    public void upData() {
+        String friend_list = Config.friend_json_data;
 
-    public void upData()
-    {
-        String friend_list= Config.friend_json_data;
+        JSONArray jsonArray = JSONArray.fromObject(friend_list);
 
-        JSONArray jsonArray=JSONArray.fromObject(friend_list);
+
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+
+            list.put(jsonObject.getString("uid"), new FriendDataJpsnel(jsonObject.getString("uid"),
+                    jsonObject.getString("name"), jsonObject.getString("uid")));
+
+
+        }
+
+        Collection<FriendDataJpsnel> faceJPanels = list.values();
+        List<FriendDataJpsnel> list = new ArrayList(faceJPanels);
+//        Collections.sort(list);
+
+        int i = 0;
+        for (FriendDataJpsnel friendDataJpsnel : list) {
+            friendDataJpsnel.setBounds(0, i++ * 50, 546, 59);
+            this.add(friendDataJpsnel);
+        }
+
+        this.setPreferredSize(new Dimension(0, 40 * list.size()));
+        this.updateUI();
+
 
 
 
     }
-
 
 
 

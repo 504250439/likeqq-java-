@@ -59,6 +59,32 @@ public class UserService {
     }
 
 
+
+    public UserInfo getUserinfo(String uid) throws SQLException {
+        Connection conn = null;
+        try {
+            conn = DBManager.getConnection();
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM USERS WHERE UID=?");
+            pst.setString(1, uid);
+            ResultSet rs = pst.executeQuery();
+            UserInfo userInfo2 = new UserInfo();
+            if (rs.next()) {
+                userInfo2.setUid(rs.getString("uid"));
+                userInfo2.setname(rs.getString("name"));
+                userInfo2.setImg(rs.getString("img"));
+            }
+            return userInfo2;
+
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            conn.close();
+        }
+
+    }
+
+
+
     /**
      * 更新好友列表
      * @param uid
@@ -106,27 +132,27 @@ public class UserService {
 
 
 
-    public static void main(String[] args) {
-        try {
-            new UserService().login("2","2");
-            System.out.println("成功");
-            String iddd="2";
-            Vector<UserInfo> userinfos=new UserService().getFriendList(iddd);
-            System.out.print(JSONArray.fromObject(userinfos).toString().getBytes());
-
-
-        } catch (UsernameNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (PasswordException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-
-
-    }
+//    public static void main(String[] args) {
+//        try {
+//            new UserService().login("2","2");
+//            System.out.println("成功");
+//            String iddd="2";
+//            Vector<UserInfo> userinfos=new UserService().getFriendList(iddd);
+//            System.out.print(JSONArray.fromObject(userinfos).toString().getBytes());
+//
+//
+//        } catch (UsernameNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (PasswordException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (SQLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//
+//
+//    }
 }

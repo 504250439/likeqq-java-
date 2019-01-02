@@ -77,6 +77,10 @@ public class loginServer implements Runnable{
                         Vector<UserInfo> userinfos=new UserService().getFriendList(uid);
                         out.write(JSONArray.fromObject(userinfos).toString().getBytes());
                         out.flush();
+                    }else if (command.equals("U0003")) {
+                        UserInfo userinfo2 = new UserService().getUserinfo(uid);
+                        out.write(JSONObject.fromObject(userinfo2).toString().getBytes());
+                        out.flush();
                     }
                     else if (command.equals("EXIT")) {
                         // 退出用户登录
@@ -136,16 +140,5 @@ public class loginServer implements Runnable{
 
 
 
-        public static void main(String[] args)
-        {
-            try
-            {
-                openServer();
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
 
 }

@@ -4,6 +4,9 @@ import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
+import view.FriendList;
+
+import java.net.DatagramSocket;
 
 import static util.Config.friend_json_data;
 
@@ -14,18 +17,21 @@ import static util.Config.friend_json_data;
  */
 public class Config {
 
-    public static final String IP="192.168.1.103";
+    public static final String IP="10.16.59.188";
     public static final  int LOGIN_POST=4001;
 
     public static String username;
     public static String password;
 
 
-
     public static String friend_json_data="";
 
     public static String resolve_friend_list_data="";
 
+    public static String my_json_data="";
+
+    // UDP发送和接收 以及心跳端
+    public static DatagramSocket datagramSocket_client = null;
 
     //解析获取用户uid
     public static void resolve_friend_json_data(String friend_json_data)

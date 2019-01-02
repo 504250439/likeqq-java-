@@ -5,6 +5,7 @@ import util.Config;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
@@ -50,10 +51,28 @@ public class NetService implements Runnable{
             byte[] bytes = new byte[1024 * 10];
             int len = input.read(bytes);
             String jsonstr = new String(bytes, 0, len);
-            ////////////////////////////////////////////
             // 解析好友列表
             Config.resolve_friend_json_data(jsonstr);
             System.out.println("好友资料:" + Config.friend_json_data);
+
+
+
+            //个人资料获得
+            output.write("U0003".getBytes());
+            output.flush();
+            len = input.read(bytes);
+            Config.my_json_data = new String(bytes, 0, len);
+            System.out.println("个人资料:" + Config.my_json_data);
+
+            Config.datagramSocket_client=new DatagramSocket();
+            //启动心跳包
+            new MessageRegService(Config.datagramSocket_client);
+            //启动消息服务
+            new MessageService(Config.datagramSocket_client);
+
+
+
+
 
             while (run) {
 

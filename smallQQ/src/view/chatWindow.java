@@ -9,12 +9,23 @@ import javax.swing.*;
  */
 
 public class chatWindow extends JFrame{
-    public chatWindow()
+    private String uidStr;
+    private String nameStr;
+    private String imgStr;
+
+
+
+
+
+    public chatWindow(String uidStr, String nameStr, String imgStr)
     {
+        this.uidStr = uidStr;
+        this.nameStr = nameStr;
+        this.imgStr = imgStr;
         init();
         setBounds(400,100,600,600);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
     }
@@ -29,7 +40,7 @@ public class chatWindow extends JFrame{
         head.setBounds(10,10,50,50);
         add(head);
 
-        JLabel name = new JLabel("name");
+        JLabel name = new JLabel(this.nameStr);
         name.setBounds(80,15,100,30);
         add(name);
 
@@ -44,7 +55,6 @@ public class chatWindow extends JFrame{
         JButton set=new JButton("发送");
         set.setBounds(480,530,100,30);
         add(set);
-
 
     }
 

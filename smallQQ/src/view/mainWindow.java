@@ -1,10 +1,12 @@
 package view;
 
+import util.Config;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import net.sf.json.JSONObject;
 
 /**
  * qq主界面
@@ -15,6 +17,7 @@ import java.awt.event.ActionListener;
 public class mainWindow extends JFrame implements ActionListener {
     JButton head;
     JButton find;
+    JButton quit;
     public mainWindow()
     {
         init();
@@ -27,17 +30,15 @@ public class mainWindow extends JFrame implements ActionListener {
     void init()
     {
         setLayout(null);
-
         head=new JButton();
         head.setIcon(new ImageIcon("src/pictures/dog.jpg"));
         head.setBounds(10,10,50,50);
         add(head);
         head.addActionListener(this);
 
-        JLabel name = new JLabel("name");
+        JLabel name = new JLabel(JSONObject.fromObject(Config.my_json_data).getString("uid"));
         name.setBounds(80,15,100,30);
         add(name);
-
 
 
 
@@ -58,7 +59,7 @@ public class mainWindow extends JFrame implements ActionListener {
         panel.setLayout(new BorderLayout());
         tabbedPane.addTab("我的好友", null, panel, null);
 
-         JScrollPane scrollPane = new JScrollPane();
+        JScrollPane scrollPane = new JScrollPane();
         panel.add(scrollPane, BorderLayout.CENTER);
         scrollPane.getViewport().add(new FriendList());
 
@@ -74,10 +75,10 @@ public class mainWindow extends JFrame implements ActionListener {
         add(find);
         find.addActionListener(this);
 
-        JButton quit=new JButton("退出");
+        quit=new JButton("退出");
         quit.setBounds(150,620,60,30);
         add(quit);
-
+        quit.addActionListener(this);
 
 
     }
@@ -95,6 +96,10 @@ public class mainWindow extends JFrame implements ActionListener {
         if(e.getSource()==find)
         {
             findFriend findfriend=new findFriend();
+        }
+        if(e.getSource()==quit)
+        {
+            System.exit(0);
         }
 
     }
