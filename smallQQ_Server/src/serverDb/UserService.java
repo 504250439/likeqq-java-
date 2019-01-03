@@ -74,6 +74,9 @@ public class UserService {
                 userInfo2.setname(rs.getString("name"));
                 userInfo2.setImg(rs.getString("img"));
             }
+
+
+
             return userInfo2;
 
         } catch (SQLException e) {
