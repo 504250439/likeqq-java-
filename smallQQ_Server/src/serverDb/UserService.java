@@ -19,46 +19,32 @@ import java.util.Vector;
 public class UserService {
 
 
-
-
-    public String login(String id,String password)
+    public String login(String id, String password)
             throws UsernameNotFoundException, PasswordException, SQLException
-            //异常:找不到姓名 密码错误 数据库连接异常
+    //异常:找不到姓名 密码错误 数据库连接异常
     {
-        Connection conn=null;
-        String sql="SELECT * FROM users where uid=?";
-        try
-        {
-            conn=DBManager.getConnection();
-            PreparedStatement pst=conn.prepareStatement(sql);
-            pst.setString(1,id);
-            ResultSet rs=pst.executeQuery();
-            if(rs.next())
-            {
-                if(rs.getString("password").equals(password))
-                {
+        Connection conn = null;
+        String sql = "SELECT * FROM users where uid=?";
+        try {
+            conn = DBManager.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                if (rs.getString("password").equals(password)) {
                     return rs.getString(1);
-                }
-                else
-                {
+                } else {
                     throw new PasswordExpiredException();
                 }
-            }
-            else
-            {
+            } else {
                 throw new UsernameNotFoundException();
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw e;
-        }
-        finally
-        {
+        } finally {
             conn.close();
         }
     }
-
 
 
     public UserInfo getUserinfo(String uid) throws SQLException {
@@ -76,7 +62,6 @@ public class UserService {
             }
 
 
-
             return userInfo2;
 
         } catch (SQLException e) {
@@ -88,27 +73,24 @@ public class UserService {
     }
 
 
-
     /**
      * 更新好友列表
+     *
      * @param uid
      * @return
      * @throws SQLException
      */
-    public Vector<UserInfo> getFriendList(String uid) throws SQLException
-    {
-        Connection conn=null;
-        try
-        {
-            conn=DBManager.getConnection();
-            PreparedStatement pst=conn.prepareStatement("sELECT u.uid,u.img,u.name from friend f  join users u on u.uid=f.friendid and f.uid=? "
-                   );
-            pst.setString(1,uid);
-            ResultSet rs=pst.executeQuery();
-            Vector<UserInfo> vector=new Vector();
-            while(rs.next())
-            {
-                UserInfo userInfo=new UserInfo();
+    public Vector<UserInfo> getFriendList(String uid) throws SQLException {
+        Connection conn = null;
+        try {
+            conn = DBManager.getConnection();
+            PreparedStatement pst = conn.prepareStatement("sELECT u.uid,u.img,u.name from friend f  join users u on u.uid=f.friendid and f.uid=? "
+            );
+            pst.setString(1, uid);
+            ResultSet rs = pst.executeQuery();
+            Vector<UserInfo> vector = new Vector();
+            while (rs.next()) {
+                UserInfo userInfo = new UserInfo();
                 userInfo.setUid(rs.getString(1));
                 userInfo.setImg(rs.getString(2));
                 userInfo.setname(rs.getString(3));
@@ -118,18 +100,48 @@ public class UserService {
             }
 
             return vector;
-        }
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             throw e;
-        }
-        finally {
+        } finally {
             conn.close();
         }
 
     }
 
+
+    public Vector<GroupInfo> getGroupList(String uid) throws SQLException {
+        Connection conn = null;
+        try {
+            conn = DBManager.getConnection();
+            PreparedStatement pst = conn.prepareStatement("SELECT groupid,groupname FROM grouplist where uid=?");
+            pst.setString(1, uid);
+            ResultSet rs = pst.executeQuery();
+            Vector<GroupInfo> vector = new Vector();
+            while (rs.next()) {
+                GroupInfo groupInfo = new GroupInfo();
+                groupInfo.setGroupid(rs.getString(1));
+                groupInfo.setGroupname(rs.getString(2));
+                //System.out.print(rs.getString(3));
+                vector.add(groupInfo);
+            }
+
+            return vector;
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            conn.close();
+        }
+
+
+    }
+
+
 }
+
+
+
+
+
 
 
 //    public static void main(String[] args) {

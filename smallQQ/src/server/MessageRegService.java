@@ -8,6 +8,15 @@ import java.net.InetAddress;
 import util.Config;
 import net.sf.json.JSONObject;
 
+/**
+ *
+ *  心跳服务
+ *  保持用户在线
+ *
+ *
+ */
+
+
 public class MessageRegService extends Thread {
 
     // 每10秒钟 向服务器注册心跳一下

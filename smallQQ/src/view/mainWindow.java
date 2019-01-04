@@ -59,10 +59,20 @@ public class mainWindow extends JFrame implements ActionListener {
         panel.setLayout(new BorderLayout());
         tabbedPane.addTab("我的好友", null, panel, null);
 
+        JPanel panel2 = new JPanel();
+        panel2.setLayout(new BorderLayout());
+        tabbedPane.addTab("我的群", null, panel2, null);
+        panel2.add(new GroupList());
+
+
         JScrollPane scrollPane = new JScrollPane();
         panel.add(scrollPane, BorderLayout.CENTER);
         scrollPane.getViewport().add(new FriendList());
 
+//        scrollPane.getViewport().add(new GroupList());
+//        JScrollPane scrollPane2 = new JScrollPane();
+//        panel2.add(scrollPane2, BorderLayout.CENTER);
+//        scrollPane.getViewport().add(new GroupList());
 
 
 

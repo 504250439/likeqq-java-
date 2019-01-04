@@ -53,6 +53,18 @@ public class NetService implements Runnable{
             Config.resolve_friend_json_data(jsonstr);
             System.out.println("好友资料:" + Config.friend_json_data);
 
+            /////////////////更新群的信息
+            output.write("U0002".getBytes());
+            output.flush();
+            byte[] bytes2 = new byte[1024 * 10];
+            len = input.read(bytes2);
+            String jsonstr2 = new String(bytes2, 0, len);
+            ///////////
+            Config.Group_json_data=jsonstr2;
+            System.out.println("我是你爸:" + Config.Group_json_data);
+            /////////////////////
+
+
 
 
             //个人资料获得
@@ -61,6 +73,8 @@ public class NetService implements Runnable{
             len = input.read(bytes);
             Config.my_json_data = new String(bytes, 0, len);
             System.out.println("个人资料:" + Config.my_json_data);
+
+
 
             Config.datagramSocket_client=new DatagramSocket();
             //启动心跳包

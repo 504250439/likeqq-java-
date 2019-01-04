@@ -31,7 +31,7 @@ public class UDPMessageServer implements Runnable {
                 // 更新最新的IP和端口号
                 UserOnlineList.getUserOnlineList().updateOnlineUDP(MyUID, packet.getAddress().getHostAddress(),
                         packet.getPort());
-                System.out.println("有注册信息发来:"+ jsonStr);
+                System.out.println("在线:"+ jsonStr);
 
                 // 处理信息转发 // 处理消息确认
             } else if (json.getString("type").equals("msg") || json.getString("type").equals("qr")) {

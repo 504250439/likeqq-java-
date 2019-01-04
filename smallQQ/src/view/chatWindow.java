@@ -43,7 +43,9 @@ public class chatWindow extends JFrame implements WindowListener {
 
     public void addMsg(Msg msg)
     {
-        String str = "\n" + nameStr + "\t" + new Date().toLocaleString() + "\n" + msg.getMsg() + "\n";
+
+        String str = "\n" + JSONObject.fromObject(Config.my_json_data).getString("name") + "\t"
+                + new Date().toLocaleString() + "\n" + msg.getMsg() + "\n";
 
         textArea.setText(textArea.getText() + str);
         textArea.setSelectionStart(textArea.getText().toString().length());
@@ -56,8 +58,7 @@ public class chatWindow extends JFrame implements WindowListener {
 
     public void addMyMsg(Msg msg)
     {
-        String str = "\n" + JSONObject.fromObject(Config.my_json_data).getString("name") + "\t"
-                + new Date().toLocaleString() + "\n" + msg.getMsg() + "\n";
+        String str = "\n" + nameStr + "\t" + new Date().toLocaleString() + "\n" + msg.getMsg() + "\n";
 
         textArea.setText(textArea.getText() + str);
         textArea.setSelectionStart(textArea.getText().toString().length());

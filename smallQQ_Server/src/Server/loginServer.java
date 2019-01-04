@@ -1,9 +1,6 @@
 package Server;
 import net.sf.json.JSONArray;
-import serverDb.PasswordException;
-import serverDb.UserInfo;
-import serverDb.UsernameNotFoundException;
-import serverDb.UserService;
+import serverDb.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +12,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.concurrent.*;
 import net.sf.json.JSONObject;
+import serverDb.UserInfo;
 
 /**
  * 登陆服务器
@@ -79,6 +77,11 @@ public class loginServer implements Runnable{
                     }else if (command.equals("U0003")) {
                         UserInfo userinfo2 = new UserService().getUserinfo(uid);
                         out.write(JSONObject.fromObject(userinfo2).toString().getBytes());
+                        out.flush();
+                    }else if (command.equals("U0002")) {
+                        //更新群列表
+                        Vector<GroupInfo>  groupInfo = new UserService().getGroupList(uid);
+                        out.write(JSONArray.fromObject(groupInfo).toString().getBytes());
                         out.flush();
                     }
                     else if (command.equals("EXIT")) {

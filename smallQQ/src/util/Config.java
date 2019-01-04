@@ -26,9 +26,13 @@ public class Config {
     public static String password;
 
 
+    public static String resolve_friend_list_data="";
     public static String friend_json_data="";
 
-    public static String resolve_friend_list_data="";
+
+    public static String resolve_Group_list_data="";
+    public static String Group_json_data="";
+
 
     public static String my_json_data="";
 

@@ -1,53 +1,49 @@
 package view;
 import util.Config;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.*;
-
 
 /**
- *  更新好友列表 显示
+ *  群的列表信息
  *
  *
  */
-public class FriendDataJpsnel extends JPanel implements MouseListener {
+
+public class GrouupDataJpsnel extends JPanel implements MouseListener{
     private String image;
-    private String name;
-    private String uid;
+    private String groupname;
+    private String groupid;
     private JLabel label_image;
     private JLabel label_name;
 
 
-    public FriendDataJpsnel(String image, String name, String uid)
+    public GrouupDataJpsnel(String groupid,String groupname)
     {
-
-        this.image = image;
-        this.name = name;
-        this.uid = uid;
-
+        this.groupname = groupname;
+        this.groupid = groupid;
         this.setLayout(null);
+
 
         label_image = new JLabel(new ImageIcon("src/pictures/dog.jpg"));
         label_image.setBounds(4, 4, 48, 48);
         add(label_image);
-        setImage(image);
-
 
         label_name = new JLabel();
         label_name.setBounds(58, 4, 478, 25);
         add(label_name);
-        label_name.setText(name);
+        label_name.setText(groupname);
 
-        this.addMouseListener(this);
     }
-    public void setname(String name) {
-        label_name.setText(name);
-        this.name = name;
+
+    public void setname(String groupname) {
+        label_name.setText(groupname);
+        this.groupname = groupname;
     }
 
     public void setImage(String image) {
@@ -57,10 +53,9 @@ public class FriendDataJpsnel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
-        if (e.getClickCount() == 2) {
-            Config.showChatWindow(uid, name,image);
-        }
+//        if (e.getClickCount() == 2) {
+//            Config.showChatWindow(groupid, groupname,image);
+//        }
     }
     @Override
     public void mousePressed(MouseEvent e) { }
