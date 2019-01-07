@@ -37,7 +37,7 @@ public class GrouupDataJpsnel extends JPanel implements MouseListener{
         label_name.setBounds(58, 4, 478, 25);
         add(label_name);
         label_name.setText(groupname);
-
+        this.addMouseListener(this);
     }
 
     public void setname(String groupname) {
@@ -53,9 +53,7 @@ public class GrouupDataJpsnel extends JPanel implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
-
-
-
+            Config.showGroupWindow(groupid,groupname,image);
         }
 
 

@@ -37,7 +37,7 @@ public class UDPMessageServer implements Runnable {
             } else if (json.getString("type").equals("msg") || json.getString("type").equals("qr")) {
                 String MyUID = json.getString("myUID");
                 String toUID = json.getString("toUID");
-                String msgg=json.getString("msg");
+                String msg=json.getString("msg");
 
                  //更新最新的IP和端口号
                 UserOnlineList.getUserOnlineList().updateOnlineUDP(MyUID, packet.getAddress().getHostAddress(),
@@ -52,7 +52,35 @@ public class UDPMessageServer implements Runnable {
 
                 // 发出数据包
                 datagramSocket.send(datagramPacket);
+            }else if(json.getString("type").equals("group")) {
+
+
+
+                String MyUID = json.getString("myUID");
+                String toUID = json.getString("toUID");
+                String msg=json.getString("msg");
+//                String Myname=json.getString("MyName");
+
+
+                // 获得要接收你信息的人
+                UserInfo toUserinfo = UserOnlineList.getUserOnlineList().getOnlineUserInfo(toUID);
+
+//                // 准备转发到客户端的数据包
+                DatagramPacket datagramPacket = new DatagramPacket(packet.getData(), packet.getLength(),
+                        InetAddress.getByName(toUserinfo.getUdpip()), toUserinfo.getUdpport());
+
+                // 发出数据包
+                datagramSocket.send(datagramPacket);
+
+
+
+
+
+
             }
+
+
+
 
         } catch (Exception e) {
             e.printStackTrace();

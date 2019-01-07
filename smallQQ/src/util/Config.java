@@ -6,7 +6,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import view.FriendList;
 import view.chatWindow;
-
+import view.groupChatWindow;
 import java.net.DatagramSocket;
 import java.util.Hashtable;
 
@@ -74,6 +74,21 @@ public class Config {
 
     }
 
+    // 聊天窗口登记
+    public  static Hashtable<String, groupChatWindow> groupchatwindow = new Hashtable<String, groupChatWindow>();
+
+    // 显示聊天窗口
+    public static void showGroupWindow(String groupId, String groupname, String imgStr) {
+
+        if (groupchatwindow.get(groupId) == null) {
+            groupChatWindow group = new groupChatWindow(groupId, groupname, imgStr);
+            groupchatwindow.put(groupId, group);
+        } else {
+            groupchatwindow.get(groupId).setAlwaysOnTop(true);
+            groupchatwindow.get(groupId).setVisible(true);
+        }
+
+    }
 
 
 

@@ -15,6 +15,8 @@ package view;
     private String msg;
     private String type;
     private String code;
+    private String groupMember;
+    private String MyName;
 
     public String getMyUID() {
         return MyUID;
@@ -56,6 +58,26 @@ package view;
         this.code = code;
     }
 
+    public void setGroupMember(String geoupMember)
+    {
+        this.groupMember=groupMember;
+    }
+
+    public String getGroupMember()
+    {
+        return groupMember;
+    }
+
+
+    public void setMyName(String MyName)
+    {
+        this.MyName=MyName;
+    }
+
+    public String getMyName()
+    {
+        return MyName;
+    }
 
 
 }
