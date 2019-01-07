@@ -24,6 +24,7 @@ public class mainWindow extends JFrame implements ActionListener {
         setBounds(800,50,250,700);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("smallQQ");
 
     }
 
@@ -89,6 +90,15 @@ public class mainWindow extends JFrame implements ActionListener {
         quit.setBounds(150,620,60,30);
         add(quit);
         quit.addActionListener(this);
+
+
+        //背景颜色
+        ImageIcon img= new ImageIcon("src/pictures/white.jpg");
+        JLabel lbBg = new JLabel(img);
+        lbBg.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
+        this.add(lbBg);
+
+
 
 
     }

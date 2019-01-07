@@ -61,7 +61,7 @@ public class NetService implements Runnable{
             String jsonstr2 = new String(bytes2, 0, len);
             ///////////
             Config.Group_json_data=jsonstr2;
-            System.out.println("我是你爸:" + Config.Group_json_data);
+            System.out.println("群的信息:" + Config.Group_json_data);
             /////////////////////
 
 

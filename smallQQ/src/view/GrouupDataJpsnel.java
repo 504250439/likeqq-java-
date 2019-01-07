@@ -22,7 +22,6 @@ public class GrouupDataJpsnel extends JPanel implements MouseListener{
     private JLabel label_image;
     private JLabel label_name;
 
-
     public GrouupDataJpsnel(String groupid,String groupname)
     {
         this.groupname = groupname;
@@ -53,9 +52,15 @@ public class GrouupDataJpsnel extends JPanel implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-//        if (e.getClickCount() == 2) {
-//            Config.showChatWindow(groupid, groupname,image);
-//        }
+        if (e.getClickCount() == 2) {
+
+
+
+        }
+
+
+
+
     }
     @Override
     public void mousePressed(MouseEvent e) { }

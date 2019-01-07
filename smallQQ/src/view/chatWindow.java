@@ -143,12 +143,4 @@ public class chatWindow extends JFrame implements WindowListener {
     @Override
     public void windowDeactivated(WindowEvent e) { }
 
-
-
-
-
-
-
-
-
 }

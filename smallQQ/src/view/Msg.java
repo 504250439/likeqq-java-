@@ -8,7 +8,7 @@ package view;
  */
 
 
-public class Msg {
+    public class Msg {
 
     private String MyUID;
     private String toUID;

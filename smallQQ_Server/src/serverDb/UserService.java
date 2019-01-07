@@ -111,19 +111,49 @@ public class UserService {
 
     public Vector<GroupInfo> getGroupList(String uid) throws SQLException {
         Connection conn = null;
+        Connection conn2= null;
+
         try {
             conn = DBManager.getConnection();
             PreparedStatement pst = conn.prepareStatement("SELECT groupid,groupname FROM grouplist where uid=?");
             pst.setString(1, uid);
             ResultSet rs = pst.executeQuery();
             Vector<GroupInfo> vector = new Vector();
+
+
+            String[] a=new String[10];
+            String s="2";
+            int i=0;
             while (rs.next()) {
                 GroupInfo groupInfo = new GroupInfo();
                 groupInfo.setGroupid(rs.getString(1));
                 groupInfo.setGroupname(rs.getString(2));
-                //System.out.print(rs.getString(3));
+
+
+                //////////////////////
+                conn2 = DBManager.getConnection();
+                PreparedStatement pst2 = conn2.prepareStatement("SELECT uid FROM grouplist where groupid=? and uid !=?");
+                pst2.setString(1,rs.getString(1));
+                pst2.setString(2,uid);
+                ResultSet rs2 = pst2.executeQuery();
+                i=0;
+                while (rs2.next()) {
+                    //System.out.print(rs2.getString(1)+"\n");
+                    groupInfo.setGroupMember(i++,rs2.getString(1));
+                }
+                /////////////////
+
                 vector.add(groupInfo);
             }
+//            conn2 = DBManager.getConnection();
+//            PreparedStatement pst2 = conn2.prepareStatement("SELECT uid FROM grouplist where groupid=? and uid !=?");
+//            pst2.setString(1, a[0]);
+//            pst2.setString(2,"2");
+//            ResultSet rs2 = pst2.executeQuery();
+//            while (rs2.next()) {
+//                System.out.print(rs2.getString(1));
+//            }
+
 
             return vector;
         } catch (SQLException e) {
@@ -133,14 +163,28 @@ public class UserService {
         }
 
 
+
     }
 
 
 }
 
-
-
-
+//
+//
+////                /////////////////记录群成员
+//                i=0;
+//                        conn2 = DBManager.getConnection();
+//                        PreparedStatement pst2 = conn2.prepareStatement("select uid from grouplist where groupid=600 ");
+//                        pst2.setString(1, uid);
+////                pst2.setString(2, uid);
+//                        ResultSet rs2 = pst2.executeQuery();
+//                        while (rs2.next()) {
+////                    groupInfo.setGroupMember(i,rs2.getString(1));
+////                    i++;
+//
+//                        }
+//
+//////////////////
 
 
 

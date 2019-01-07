@@ -79,7 +79,7 @@ public class loginServer implements Runnable{
                         out.write(JSONObject.fromObject(userinfo2).toString().getBytes());
                         out.flush();
                     }else if (command.equals("U0002")) {
-                        //更新群列表
+                        //更新群列表 
                         Vector<GroupInfo>  groupInfo = new UserService().getGroupList(uid);
                         out.write(JSONArray.fromObject(groupInfo).toString().getBytes());
                         out.flush();

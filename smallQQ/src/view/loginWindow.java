@@ -4,6 +4,7 @@ import server.NetService;
 import util.Config;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import net.sf.json.JSONObject;
@@ -43,7 +44,7 @@ public class loginWindow extends JFrame implements ActionListener {
         setBounds(300,300,450,350);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        setTitle("smallQQ");
 
 
     }
@@ -51,6 +52,9 @@ public class loginWindow extends JFrame implements ActionListener {
     public void init()
     {
         setLayout(null);
+
+
+
 
         JLabel id1 = new JLabel("账号:");
         id1.setBounds(80,120,100,30);
@@ -78,6 +82,10 @@ public class loginWindow extends JFrame implements ActionListener {
         loginbutton.addActionListener(this);
         add(loginbutton);
 
+        ImageIcon img= new ImageIcon("src/pictures/white.jpg");
+        JLabel lbBg = new JLabel(img);
+        lbBg.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
+        this.add(lbBg);
 
 
 

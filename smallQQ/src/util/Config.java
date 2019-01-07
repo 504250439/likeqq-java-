@@ -19,7 +19,7 @@ import static util.Config.friend_json_data;
  */
 public class Config {
 
-    public static final String IP="10.16.59.188";
+    public static final String IP="192.168.1.109";
     public static final  int LOGIN_POST=4001;
     public static final int REGISTER_POST=4123;
     public static String username;
@@ -76,4 +76,7 @@ public class Config {
 
 
 
-}
+
+
+    }
+
