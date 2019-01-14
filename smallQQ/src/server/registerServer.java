@@ -43,13 +43,16 @@ public class registerServer {
 
         System.out.print("服务器发回信息啦");
 
-        json_str = new String(bytes, 0, len + 1);
-        JSONObject json = JSONObject.fromObject(json_str);
-        int sta=json.getInt("state");
+//        json_str = new String(bytes, 0, len + 1);
+//
+//        System.out.print(json_str+"    awdawdawdwa");
+//
+//        JSONObject json = JSONObject.fromObject(json_str);
+//        int sta=json.getInt("state");
+//
+//        System.out.print(json_str);
+//
 
-        System.out.print(json_str);
-
-
-        return sta;
+        return 23;
     }
 }

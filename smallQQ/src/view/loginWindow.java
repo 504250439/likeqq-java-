@@ -114,9 +114,10 @@ public class loginWindow extends JFrame implements ActionListener {
 
                 if (json.getInt("state") == 0) {
                     //登录成功后 显示好友列表
-                    new mainWindow().setVisible(true);
                     loginWindow.this.setVisible(false);
                     loginWindow.this.dispose();
+                    new mainWindow().setVisible(true);
+
                 }else{
                     javax.swing.JOptionPane.showMessageDialog(loginWindow.this, json.get("msg"));
                 }

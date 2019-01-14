@@ -65,14 +65,34 @@ public class NetService implements Runnable{
             /////////////////////
 
 
-
-
             //个人资料获得
             output.write("U0003".getBytes());
             output.flush();
             len = input.read(bytes);
             Config.my_json_data = new String(bytes, 0, len);
             System.out.println("个人资料:" + Config.my_json_data);
+
+
+
+            //查找的好友
+//            if(Config.find_friend_id.equals("2"))
+//            {
+//                System.out.print(Config.find_friend_id);
+            output.write("U0004".getBytes());
+            output.flush();
+            byte[] bytes4 = new byte[1024 * 10];
+            len = input.read(bytes4);
+            String sss = new String(bytes4, 0, len);
+            System.out.println("查找的好友:" + sss);
+//                byte[] bytes4 = new byte[1024 * 10];
+//                len = input.read(bytes4);
+//                String jsonstr4 = new String(bytes4, 0, len);
+//                // 解析好友列表
+//                Config.find_json_data = jsonstr4;
+//                System.out.println("查找好友的:" + Config.find_json_data);
+//
+//            }
+
 
 
 
@@ -97,6 +117,7 @@ public class NetService implements Runnable{
             run = false;
         }
     }
+
 
     private Socket socket = null;
     private InputStream input = null;

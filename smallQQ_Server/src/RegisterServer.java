@@ -1,5 +1,3 @@
-package Server;
-
 import net.sf.json.JSONObject;
 import serverDb.DBManager;
 

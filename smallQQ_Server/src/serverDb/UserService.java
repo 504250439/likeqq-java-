@@ -145,18 +145,43 @@ public class UserService {
 
                 vector.add(groupInfo);
             }
-//            conn2 = DBManager.getConnection();
-//            PreparedStatement pst2 = conn2.prepareStatement("SELECT uid FROM grouplist where groupid=? and uid !=?");
-//            pst2.setString(1, a[0]);
-//            pst2.setString(2,"2");
-//            ResultSet rs2 = pst2.executeQuery();
-//            while (rs2.next()) {
-//                System.out.print(rs2.getString(1));
-//            }
+
 
 
             return vector;
         } catch (SQLException e) {
+            throw e;
+        } finally {
+            conn.close();
+        }
+
+    }
+
+
+    public UserInfo findFriend(String uid) throws SQLException {
+        Connection conn = null;
+        try {
+            System.out.print("zhixing"+"\n");
+
+            conn = DBManager.getConnection();
+            PreparedStatement pst = conn.prepareStatement("select uid,name,img from users where uid=?");
+            pst.setString(1, uid);
+            ResultSet rs = pst.executeQuery();
+
+
+            System.out.print("zhixing"+"\n");
+            System.out.print(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3)+"\n");
+
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUid(rs.getString(1));
+            userInfo.setname(rs.getString(2));
+            userInfo.setImg(rs.getString(3));
+
+            System.out.print(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3)+"\n");
+
+            return userInfo;
+        } catch (SQLException e) {
+            System.out.print("shujuhu"+"\n");
             throw e;
         } finally {
             conn.close();
@@ -167,48 +192,14 @@ public class UserService {
     }
 
 
+
+
+
+
+
+
+
 }
 
-//
-//
-////                /////////////////记录群成员
-//                i=0;
-//                        conn2 = DBManager.getConnection();
-//                        PreparedStatement pst2 = conn2.prepareStatement("select uid from grouplist where groupid=600 ");
-//                        pst2.setString(1, uid);
-////                pst2.setString(2, uid);
-//                        ResultSet rs2 = pst2.executeQuery();
-//                        while (rs2.next()) {
-////                    groupInfo.setGroupMember(i,rs2.getString(1));
-////                    i++;
-//
-//                        }
-//
-//////////////////
 
-
-
-//    public static void main(String[] args) {
-//        try {
-//            new UserService().login("2","2");
-//            System.out.println("成功");
-//            String iddd="2";
-//            Vector<UserInfo> userinfos=new UserService().getFriendList(iddd);
-//            System.out.print(JSONArray.fromObject(userinfos).toString().getBytes());
-//
-//
-//        } catch (UsernameNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } catch (PasswordException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } catch (SQLException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//
-//
-//
-//    }
 

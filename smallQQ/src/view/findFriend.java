@@ -1,6 +1,10 @@
 package view;
 
+import util.Config;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * 查找好友界面
@@ -8,7 +12,10 @@ import javax.swing.*;
  *
  */
 
-public class findFriend extends JFrame{
+public class findFriend extends JFrame implements ActionListener {
+    private JTextField findId;
+
+
     public findFriend()
     {
         init();
@@ -21,13 +28,20 @@ public class findFriend extends JFrame{
 
     void init()
     {
-        JLabel name= new JLabel("name:");
-        name.setBounds(10,10,100,30);
-        add(name);
+        JLabel idL= new JLabel("id:");
+        idL.setBounds(10,10,100,30);
+        add(idL);
 
-        JTextField findName=new JTextField(15);
-        findName.setBounds(120,10,150,30);
-        add(findName);
+        findId=new JTextField(15);
+        findId.setBounds(120,10,150,30);
+        add(findId);
+
+        JButton find=new JButton("查找");
+        find.setBounds(280,10,80,30);
+        add(find);
+        find.addActionListener(this);
+
+
 
         JLabel label1= new JLabel("查找结果");
         label1.setBounds(10,70,100,30);
@@ -40,5 +54,11 @@ public class findFriend extends JFrame{
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+//        String find_id = findId.getText().trim();
+//        Config.find_friend_id=find_id;
+
+    }
 
 }

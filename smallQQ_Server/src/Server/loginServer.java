@@ -83,10 +83,16 @@ public class loginServer implements Runnable{
                         Vector<GroupInfo>  groupInfo = new UserService().getGroupList(uid);
                         out.write(JSONArray.fromObject(groupInfo).toString().getBytes());
                         out.flush();
-                    }
-                    else if (command.equals("EXIT")) {
+
+                    } else if (command.equals("EXIT")) {
                         // 退出用户登录
                         return;
+                    }else if (command.equals("U0004")){
+                        //寻找好友
+                        UserInfo userinfos4=new UserService().findFriend("2");
+                        System.out.print(JSONObject.fromObject(userinfos4).toString());
+                        out.write(JSONObject.fromObject(userinfos4).toString().getBytes());
+                        out.flush();
                     }
                 }
 
@@ -122,6 +128,18 @@ public class loginServer implements Runnable{
 
 
      }
+
+
+    //判断是否为数字
+    public static boolean isNumeric(String str){
+        for (int i = str.length();--i>=0;){
+            if (!Character.isDigit(str.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 
     public static void openServer() throws Exception

@@ -8,6 +8,20 @@ public class start {
 
             public void run() {
                 try {
+                    System.out.println("注册服务器!");
+                    RegisterServer.openServer();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            };
+        }.start();
+
+
+        new Thread() {
+
+            public void run() {
+                try {
                     System.out.println("登录服务器启动成功!");
                     loginServer.openServer();
 
@@ -30,18 +44,7 @@ public class start {
             };
         }.start();
 
-        new Thread() {
 
-            public void run() {
-                try {
-                    System.out.println("注册服务器!");
-                    RegisterServer.openServer();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            };
-        }.start();
 
     }
 

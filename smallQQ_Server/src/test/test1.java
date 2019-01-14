@@ -1,61 +1,86 @@
 package test;
 
+import net.sf.json.JSONObject;
+import serverDb.DBManager;
 
-import net.sf.json.JSONArray;
-import java.util.regex.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import com.mysql.cj.exceptions.PasswordExpiredException;
+import com.mysql.cj.xdevapi.SqlDataResult;
+import net.sf.json.JSONArray;
+import serverDb.UserInfo;
+
+import java.beans.PersistenceDelegate;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
+/**
+ * 注册用户登记
+ *
+ *
+ *  * @param uid
+ *  * @param name
+ * @return
+ * @throws SQLException
+ */
+public class test1  {
+
+    private Socket socket=null;
 
 
-public class test1 {
-    public static void main(String[] args) {
 
-        String s="[{\"groupid\":\"600\",\"groupmember\":[\"1\",\"3\",null,null,null,null,null,null,null,null],\"groupname\":\"这个群有鬼\"},{\"groupid\":\"602\",\"groupmember\":[\"1\",null,null,null,null,null,null,null,null,null],\"groupname\":\"非洲旅游\"}]";
-        char[] ff;
-        String ss;
-
-        JSONArray a=new JSONArray();
-        System.out.print(s+"\n");
-        System.out.print(JSONArray.fromObject(s).getJSONObject(0).getString("groupmember").toString()  +"\n");
-
-        //////////////////  frienfid
-        ss=JSONArray.fromObject(s).getJSONObject(0).getString("groupmember").toString();
-        String regex="[^0-9]+";
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(ss);
-        String string = m.replaceAll(" ").trim();
-        String[] strArr = string.split(" ");
-        //遍历数组转换数据类型输出
-        for(String dd:strArr){
-            System.out.println(Integer.parseInt(dd));
-        }
-
-        ////////////////////////////////
-
-        String ggg;
-        try {
-            for (int i = 0; i < 10; i++) {
-                ggg = JSONArray.fromObject(s).getJSONObject(i).getString("groupid").toString();
+    public static void main(String[] args){
+        // 登录操作
+        Connection conn = null;
+        InputStream in = null;
+        OutputStream out = null;
 
 
-                System.out.println(Integer.parseInt(ggg));
+        System.out.print("aaaaaaaaa"+"\n");
+
+            try {
+
+                conn = DBManager.getConnection();
+//                PreparedStatement pst = conn.prepareStatement("insert into users(uid,name,password) values(99,99,99)");
+                PreparedStatement pst5 = conn.prepareStatement("select uid from users");
+                ResultSet rs5 = pst5.executeQuery();
+
+                System.out.print(rs5.getString(1)+"\n");
+
+                System.out.print("aaaaaaaaa"+"\n");
+
+
+                System.out.print("登录成功"+"\n");
+
+
+            }catch (SQLException a){
+                System.out.print("无法连接数据库"+"\n");
+            }catch (Exception e) {
+                System.out.print("未知错误"+"\n");
             }
-        }catch (Exception e){}
 
+         finally {
+            try
+            {
+            }catch(Exception e2){
 
+            }
 
-
-
-
-
-
+        }
 
     }
 
+
 }
-
-
-
